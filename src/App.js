@@ -1,19 +1,35 @@
 
 
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './components/login/login';
-import Calendar from './calendar/calendar';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+import CalendarComponent from './calendar/calendar';
+import Dashboard from './calendar/dashboard/dashboard';
+
+const { Header, Content } = Layout;
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/" element={<Navigate to="/calendar" />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <Layout>
+        <Header>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1">
+              <Link to="/">Calendar</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/dashboard">Dashboard</Link>
+            </Menu.Item>
+          </Menu>
+        </Header>
+        <Content style={{ padding: '0 50px', marginTop: 20 }}>
+          <Routes>
+            <Route path="/" element={<CalendarComponent />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </Content>
+      </Layout>
+    </Router>
   );
 }
 

@@ -42,3 +42,30 @@ body {
   padding: 2px 5px;
   font-size: 0.85em;
 }
+
+
+/* Override ant-design primary color */
+.ant-btn-primary {
+  background-color: #4CAF50 !important;
+  border-color: #4CAF50 !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #45a049 !important;
+  border-color: #45a049 !important;
+}
+
+/* Table header styling */
+.ant-table-thead > tr > th {
+  background-color: #f0f7f0 !important;
+  color: #333;
+}
+
+/* Pagination active state */
+.ant-pagination-item-active {
+  border-color: #4CAF50 !important;
+}
+
+.ant-pagination-item-active a {
+  color: #4CAF50 !important;
+}
