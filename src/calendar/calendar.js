@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
 import moment from 'moment';
 import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -38,6 +40,7 @@ const EventComponent = ({ event }) => (
 );
 
 const CalendarComponent = () => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [view, setView] = useState('month');
   const [date, setDate] = useState(new Date());
@@ -100,6 +103,13 @@ const CalendarComponent = () => {
           />
           <h1 style={{ margin: 5, color: '#333', fontSize: '30px', fontWeight: 'bold' }}>Calendario de Eventos</h1>
         </div>
+        <Button 
+          type="primary" 
+          onClick={() => navigate('/login')}
+          style={{ marginLeft: '20px' }}
+        >
+          Iniciar Sesión
+        </Button>
       </header>
 
       <div style={{ backgroundColor: 'white', borderRadius: '10px', padding: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
