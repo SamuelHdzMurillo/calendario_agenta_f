@@ -4,9 +4,11 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import axios from "axios";
 import logo from "../../img/BCS_2.png";
 import bgImage from "../../img/sun-tornado.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();  // Add this line
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -17,6 +19,8 @@ const Login = () => {
       );
       if (response.data.token) {
         message.success("Login exitoso");
+        localStorage.setItem("token", response.data.token);
+        navigate("/dashboard");
         // Aquí puedes redirigir al usuario o guardar el token en el estado global/local
       } else {
         message.error("Credenciales incorrectas");
