@@ -44,6 +44,12 @@ const CalendarComponent = () => {
   const [events, setEvents] = useState([]);
   const [view, setView] = useState('month');
   const [date, setDate] = useState(new Date());
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setHasToken(!!token);
+  }, []);
 
   // Obtener y mapear los eventos de la API
   useEffect(() => {
@@ -103,13 +109,23 @@ const CalendarComponent = () => {
           />
           <h1 style={{ margin: 5, color: '#333', fontSize: '30px', fontWeight: 'bold' }}>Calendario de Eventos</h1>
         </div>
-        <Button 
-          type="primary" 
-          onClick={() => navigate('/login')}
-          style={{ marginLeft: '20px' }}
-        >
-          Iniciar Sesión
-        </Button>
+        <div>
+          {hasToken ? (
+            <Button 
+              type="primary" 
+              onClick={() => navigate('/dashboard')}
+              style={{ marginRight: '10px', backgroundColor: '#4CAF50', borderColor: '#4CAF50' }}
+            >
+              Dashboard
+            </Button>
+          ) : null}
+          <Button 
+            type="primary" 
+            onClick={() => navigate('/login')}
+          >
+            Iniciar Sesión
+          </Button>
+        </div>
       </header>
 
       <div style={{ backgroundColor: 'white', borderRadius: '10px', padding: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
