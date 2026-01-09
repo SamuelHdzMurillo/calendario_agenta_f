@@ -20,8 +20,15 @@ const Login = () => {
       if (response.data.token) {
         message.success("Login exitoso");
         localStorage.setItem("token", response.data.token);
-        navigate("/dashboard");
-        // Aquí puedes redirigir al usuario o guardar el token en el estado global/local
+        // Guardar información del usuario si viene en la respuesta
+        if (response.data.user) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+        } else if (response.data.roles) {
+          // Si los roles vienen directamente en la respuesta
+          localStorage.setItem("user", JSON.stringify({ roles: response.data.roles }));
+        }
+        // Redirigir al calendario para que el usuario vea los cambios
+        navigate("/");
       } else {
         message.error("Credenciales incorrectas");
       }
